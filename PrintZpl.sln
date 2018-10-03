@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27428.2015
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrintZpl", "PrintZpl\PrintZpl.csproj", "{1B1733D1-FE8E-4856-923A-55DE4B73762F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrintLinkOS", "PrintLinkOS\PrintLinkOS.csproj", "{2C0D74EE-E525-494E-9015-8F4F8A080E72}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{1B1733D1-FE8E-4856-923A-55DE4B73762F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1B1733D1-FE8E-4856-923A-55DE4B73762F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1B1733D1-FE8E-4856-923A-55DE4B73762F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C0D74EE-E525-494E-9015-8F4F8A080E72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C0D74EE-E525-494E-9015-8F4F8A080E72}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C0D74EE-E525-494E-9015-8F4F8A080E72}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C0D74EE-E525-494E-9015-8F4F8A080E72}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
