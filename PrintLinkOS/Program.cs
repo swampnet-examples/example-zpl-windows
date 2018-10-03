@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Zebra.Sdk.Comm;
+using Zebra.Sdk.Printer;
 
 namespace PrintLinkOS
 {
@@ -13,9 +15,11 @@ namespace PrintLinkOS
         {
             try
             {
-                var zpl = GenerateZpl("test");
+                // Not on my emulator?
+                //CheckPrinterStatus("127.0.0.1", 9100);
+                //PrintImage("127.0.0.1", 9100);
 
-                SendZplOverTcp("127.0.0.1", 9100, zpl); //TcpConnection.DEFAULT_ZPL_TCP_PORT
+                SendZplOverTcp("127.0.0.1", 9100, GenerateZpl("test")); //TcpConnection.DEFAULT_ZPL_TCP_PORT
             }
             catch (Exception ex)
             {
@@ -54,27 +58,104 @@ namespace PrintLinkOS
         }
 
 
+        private static void CheckPrinterStatus(string address, int port)
+        {
+            Connection connection = new TcpConnection(address, port);
+            try
+            {
+                connection.Open();
+                ZebraPrinter printer = ZebraPrinterFactory.GetInstance(PrinterLanguage.ZPL, connection);
+
+                PrinterStatus printerStatus = printer.GetCurrentStatus();
+                if (printerStatus.isReadyToPrint)
+                {
+                    Console.WriteLine("Ready To Print");
+                }
+                else if (printerStatus.isPaused)
+                {
+                    Console.WriteLine("Cannot Print because the printer is paused.");
+                }
+                else if (printerStatus.isHeadOpen)
+                {
+                    Console.WriteLine("Cannot Print because the printer head is open.");
+                }
+                else if (printerStatus.isPaperOut)
+                {
+                    Console.WriteLine("Cannot Print because the paper is out.");
+                }
+                else
+                {
+                    Console.WriteLine("Cannot Print.");
+                }
+            }
+            catch (ConnectionException e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+            catch (ZebraPrinterLanguageUnknownException e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+
+
+        private static void PrintImage(string address, int port)
+        {
+            Connection connection = new TcpConnection(address, port);
+            try
+            {
+                connection.Open();
+                ZebraPrinter printer = ZebraPrinterFactory.GetInstance(PrinterLanguage.ZPL, connection);
+
+                int x = 0;
+                int y = 0;
+                printer.PrintImage("data/mooncake.png", x, y);
+            }
+            catch (ConnectionException e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+            catch (ZebraPrinterLanguageUnknownException e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+            catch (IOException e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+
+
         private static string GenerateZpl(string text)
         {
-            return @"
-					^XA
+            return 
+                @"
+				^XA
 
-					^FX test lines, various point sizes
-					^CFA,15
-					^FO50,10^FD" + text + @"^FS
-					^CFA,30
-					^FO50,30^FD" + text + @"^FS
-					^CFA,60
-					^FO50,60^FD" + text + @"^FS
+				^FX test lines, various point sizes
+				^CFA,15
+				^FO50,10^FD" + text + @"^FS
+				^CFA,30
+				^FO50,30^FD" + text + @"^FS
+				^CFA,60
+				^FO50,60^FD" + text + @"^FS
 
-					^FX line
-					^FO50,130^GB1000,1,3^FS
+				^FX line
+				^FO50,130^GB1000,1,3^FS
 
-					^FX barcode
-					^BY5,2,300
-					^FO100,150^BC^FD" + text + @"^FS
+				^FX barcode
+				^BY5,2,300
+				^FO100,150^BC^FD" + text + @"^FS
 
-					^XZ
+				^XZ
 			";
         }
     }
