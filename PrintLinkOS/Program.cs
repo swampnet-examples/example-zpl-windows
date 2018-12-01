@@ -19,7 +19,7 @@ namespace PrintLinkOS
                 //CheckPrinterStatus("127.0.0.1", 9100);
                 //PrintImage("127.0.0.1", 9100);
 
-                SendZplOverTcp("127.0.0.1", 9100, GenerateZpl("test")); //TcpConnection.DEFAULT_ZPL_TCP_PORT
+                SendZplOverTcp("127.0.0.1", 9100, GenerateZpl("test"));
             }
             catch (Exception ex)
             {
@@ -154,6 +154,9 @@ namespace PrintLinkOS
 				^FX barcode
 				^BY5,2,300
 				^FO100,150^BC^FD" + text + @"^FS
+
+				^QR code
+                ^FO100,500^BY4,2.0,65^BQN,2,10^FD093" + text + @"^FS
 
 				^XZ
 			";
