@@ -179,15 +179,21 @@ namespace PrintLinkOS
             var dots_72pt = printerInfo.PointToDot(72);
 
             var label = new Label();
-            label.Content.Add(new Text()
+            label.Content.Add(new Paragraph("Some test paragraph")
             {
                 MarginLeft = "50%",
                 MarginTop = "10pt",
                 HorizontalAlignment = HorizontalAlignment.Left,
-                VerticalAlignment = VerticalAlignment.Top
+                VerticalAlignment = VerticalAlignment.Top,
+                Content = new List<Text>()
+                {
+                    new Text(){Content = "Line 1"},
+                    new Text(){Content = "Line 2"},
+                    new Text(){Content = "Line 3"}
+                }
             });
 
-            label.Content.Add(new Barcode()
+            label.Content.Add(new Barcode("Some test barcode")
             {
                 X = "50%",
                 Y = "0%",

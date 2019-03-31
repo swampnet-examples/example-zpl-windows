@@ -4,6 +4,17 @@ namespace SimpleDoc.Labels
 {
     public class Barcode : FieldBase
     {
+        public Barcode()
+        {
+
+        }
+
+        public Barcode(string name)
+            : base(name)
+        {
+
+        }
+
         [XmlAttribute(AttributeName = "type")]
         public int Type { get; set; }
 

@@ -8,6 +8,17 @@ namespace SimpleDoc.Labels
     /// </summary>
     public abstract class FieldBase
     {
+        public FieldBase()
+        {
+
+        }
+
+        public FieldBase(string name)
+            : this()
+        {
+            Name = name;
+        }
+
         [XmlAttribute(AttributeName = "name")]
         public string Name { get; set; }
 
@@ -15,7 +26,7 @@ namespace SimpleDoc.Labels
         protected abstract int GetFieldY(PrintInfo printInfo);
         protected abstract string GetFieldContent(PrintInfo printInfo);
 
-        internal virtual string Emit(PrintInfo printInfo)
+        internal string Emit(PrintInfo printInfo)
         {
             var zpl = new StringBuilder();
 

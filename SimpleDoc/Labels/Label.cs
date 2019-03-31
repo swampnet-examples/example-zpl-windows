@@ -16,7 +16,7 @@ namespace SimpleDoc.Labels
 
 
         [XmlArray("content")]
-        [XmlArrayItem("text", typeof(Text))]
+        [XmlArrayItem("p", typeof(Paragraph))]
         [XmlArrayItem("barcode", typeof(Barcode))]
         public List<FieldBase> Content { get; set; }
 
