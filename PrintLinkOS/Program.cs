@@ -177,34 +177,164 @@ namespace PrintLinkOS
 
             var dots_12pt = printerInfo.PointToDot(12);
             var dots_72pt = printerInfo.PointToDot(72);
+            var fontSize = "30pt";
 
             var label = new Label();
-            label.Content.Add(new Paragraph("Some test paragraph")
+            label.Content.Add(new Paragraph("Top Left")
             {
-                MarginLeft = "50%",
+                Font = 0,
+                FontSize = fontSize,
+                MarginLeft = "10pt",
                 MarginTop = "10pt",
+                MarginBottom = "10pt",
                 HorizontalAlignment = HorizontalAlignment.Left,
                 VerticalAlignment = VerticalAlignment.Top,
                 Content = new List<Text>()
                 {
-                    new Text(){Content = "Line 1"},
-                    new Text(){Content = "Line 2"},
-                    new Text(){Content = "Line 3"}
+                    new Text(){Content = "Left"}
                 }
             });
 
-            label.Content.Add(new Barcode("Some test barcode")
+            label.Content.Add(new Paragraph("Top Center")
             {
-                X = "50%",
-                Y = "0%",
-                Content = "Hello, world"
+                Font = 0,
+                FontSize = fontSize,
+                MarginLeft = "10pt",
+                MarginTop = "10pt",
+                MarginBottom = "10pt",
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Top,
+                Content = new List<Text>()
+                {
+                    new Text(){Content = "Center"},
+                    new Text(){Content = "Center Line 2"}
+                }
             });
+
+            label.Content.Add(new Paragraph("Top Right")
+            {
+                Font = 0,
+                FontSize = fontSize,
+                MarginLeft = "10pt",
+                MarginTop = "10pt",
+                MarginBottom = "10pt",
+                HorizontalAlignment = HorizontalAlignment.Right,
+                VerticalAlignment = VerticalAlignment.Top,
+                Content = new List<Text>()
+                {
+                    new Text(){Content = "Right"}
+                }
+            });
+
+
+            label.Content.Add(new Paragraph("Center Left")
+            {
+                Font = 0,
+                FontSize = fontSize,
+                MarginLeft = "10pt",
+                MarginTop = "10pt",
+                MarginBottom = "10pt",
+                HorizontalAlignment = HorizontalAlignment.Left,
+                VerticalAlignment = VerticalAlignment.Center,
+                Content = new List<Text>()
+                {
+                    new Text(){Content = "Left"}
+                }
+            });
+
+            label.Content.Add(new Paragraph("Center Center")
+            {
+                Font = 0,
+                FontSize = fontSize,
+                MarginLeft = "10pt",
+                MarginTop = "10pt",
+                MarginBottom = "10pt",
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center,
+                Content = new List<Text>()
+                {
+                    new Text(){Content = "Center"},
+                    new Text(){Content = "Center Line 2"}
+                }
+            });
+
+            label.Content.Add(new Paragraph("Center Right")
+            {
+                Font = 0,
+                FontSize = fontSize,
+                MarginLeft = "10pt",
+                MarginTop = "10pt",
+                MarginBottom = "10pt",
+                HorizontalAlignment = HorizontalAlignment.Right,
+                VerticalAlignment = VerticalAlignment.Center,
+                Content = new List<Text>()
+                {
+                    new Text(){Content = "Right"}
+                }
+            });
+
+
+
+            label.Content.Add(new Paragraph("Bottom Left")
+            {
+                Font = 0,
+                FontSize = fontSize,
+                MarginLeft = "10pt",
+                MarginTop = "10pt",
+                MarginBottom = "10pt",
+                HorizontalAlignment = HorizontalAlignment.Left,
+                VerticalAlignment = VerticalAlignment.Bottom,
+                Content = new List<Text>()
+                {
+                    new Text(){Content = "Left"}
+                }
+            });
+
+            label.Content.Add(new Paragraph("Bottom Center")
+            {
+                Font = 0,
+                FontSize = fontSize,
+                MarginLeft = "10pt",
+                MarginTop = "10pt",
+                MarginBottom = "10pt",
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Bottom,
+                Content = new List<Text>()
+                {
+                    new Text(){Content = "Center"},
+                    new Text(){Content = "Center Line 2"}
+                }
+            });
+
+            label.Content.Add(new Paragraph("Bottom Right")
+            {
+                Font = 0,
+                FontSize = fontSize,
+                MarginLeft = "10pt",
+                MarginTop = "10pt",
+                MarginBottom = "10pt",
+                HorizontalAlignment = HorizontalAlignment.Right,
+                VerticalAlignment = VerticalAlignment.Bottom,
+                Content = new List<Text>()
+                {
+                    new Text(){Content = "Right"}
+                }
+            });
+
+
+            //label.Content.Add(new Barcode("Some test barcode")
+            //{
+            //    X = "50%",
+            //    Y = "0%",
+            //    Content = "Hello, world"
+            //});
 
             var xml = label.Serialize();
             Console.WriteLine("____________________________________________________________________________");
             Console.WriteLine(xml);
             Console.WriteLine("____________________________________________________________________________");
-            Console.WriteLine(label.ToZPL(printerInfo));
+            var zpl = label.ToZPL(printerInfo);
+            Console.WriteLine(zpl);
             Console.WriteLine("____________________________________________________________________________");
         }
     }
