@@ -63,7 +63,7 @@ namespace SimpleDoc.Labels
                 }
                 else if (value.EndsWith("pt"))
                 {
-                    double pt = Convert.ToDouble(value.Replace("dt", ""));
+                    double pt = Convert.ToDouble(value.Replace("pt", ""));
                     dot = PointToDot(pt);
                 }
                 else if (value.EndsWith("d"))

@@ -11,18 +11,20 @@ namespace SimpleDoc.Labels
     {
         public Label()
         {
-            Sections = new List<Section>();
+            Content = new List<FieldBase>();
         }
 
 
-        [XmlElement("section")]
-        public List<Section> Sections { get; set; }
+        [XmlArray("content")]
+        [XmlArrayItem("text", typeof(Text))]
+        [XmlArrayItem("barcode", typeof(Barcode))]
+        public List<FieldBase> Content { get; set; }
 
 
         public string Serialize()
         {
             var serializer = new XmlSerializer(typeof(Label));
-            using (StringWriter writer = new Utf8StringWriter())
+            using (var writer = new Utf8StringWriter())
             {
                 serializer.Serialize(writer, this);
                 return writer.ToString();
@@ -43,9 +45,10 @@ namespace SimpleDoc.Labels
         {
             var zpl = new StringBuilder();
             zpl.AppendLine("^XA");
-            foreach(var section in Sections)
+
+            foreach(var field in Content)
             {
-                zpl.Append(section.Emit(printInfo));
+                zpl.Append(field.Emit(printInfo));
             }
 
             zpl.AppendLine("^XZ");

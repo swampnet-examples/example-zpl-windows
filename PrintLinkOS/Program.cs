@@ -179,29 +179,19 @@ namespace PrintLinkOS
             var dots_72pt = printerInfo.PointToDot(72);
 
             var label = new Label();
-            label.Sections.Add(new Section("Section ONE")
+            label.Content.Add(new Text()
             {
                 MarginLeft = "50%",
                 MarginTop = "10pt",
                 HorizontalAlignment = HorizontalAlignment.Left,
-                VerticalAlignment = VerticalAlignment.Top,
-                Content = new List<ContentBase>() {
-                    new Text() { Content = "Hello, world", Width=50, Height=50 },
-                    new Linebreak(),
-                    new Text() { Content = "Line two", Width=25, Height=25 },
-                    new Text() { Content = "More text on line two", Width=25, Height=25 },
-                    new Linebreak(),
-                    new Barcode() { Content = "XXYYZZ-123456", Type = 99, Width=50, Height=50 }
-                }
+                VerticalAlignment = VerticalAlignment.Top
             });
 
-            label.Sections.Add(new Section("Section TWO")
+            label.Content.Add(new Barcode()
             {
-                HorizontalAlignment = HorizontalAlignment.Left,
-                VerticalAlignment = VerticalAlignment.Top,
-                Content = new List<ContentBase>() {
-                    new Text() { Content = "Hello, SECTION TWO", Width=50, Height=50 }
-                }
+                X = "50%",
+                Y = "0%",
+                Content = "Hello, world"
             });
 
             var xml = label.Serialize();
