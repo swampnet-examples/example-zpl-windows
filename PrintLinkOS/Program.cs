@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SimpleDoc;
+using SimpleDoc.Labels;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -15,11 +17,12 @@ namespace PrintLinkOS
         {
             try
             {
+                TestSimpleDoc();
+
                 // Not on my emulator?
                 //CheckPrinterStatus("127.0.0.1", 9100);
                 //PrintImage("127.0.0.1", 9100);
-
-                SendZplOverTcp("127.0.0.1", 9100, GenerateZpl("test"));
+                //SendZplOverTcp("127.0.0.1", 9100, GenerateZpl("test"));
             }
             catch (Exception ex)
             {
@@ -160,6 +163,53 @@ namespace PrintLinkOS
 
 				^XZ
 			";
+        }
+
+
+        private static void TestSimpleDoc()
+        {
+            var printerInfo = new PrintInfo() {
+                Name = "Labelary",
+                DPI = 203,
+                LabelWidthInches = 4,
+                LabelHeightInches = 6
+            };
+
+            var dots_12pt = printerInfo.PointToDot(12);
+            var dots_72pt = printerInfo.PointToDot(72);
+
+            var label = new Label();
+            label.Sections.Add(new Section("Section ONE")
+            {
+                MarginLeft = "50%",
+                MarginTop = "10pt",
+                HorizontalAlignment = HorizontalAlignment.Left,
+                VerticalAlignment = VerticalAlignment.Top,
+                Content = new List<ContentBase>() {
+                    new Text() { Content = "Hello, world", Width=50, Height=50 },
+                    new Linebreak(),
+                    new Text() { Content = "Line two", Width=25, Height=25 },
+                    new Text() { Content = "More text on line two", Width=25, Height=25 },
+                    new Linebreak(),
+                    new Barcode() { Content = "XXYYZZ-123456", Type = 99, Width=50, Height=50 }
+                }
+            });
+
+            label.Sections.Add(new Section("Section TWO")
+            {
+                HorizontalAlignment = HorizontalAlignment.Left,
+                VerticalAlignment = VerticalAlignment.Top,
+                Content = new List<ContentBase>() {
+                    new Text() { Content = "Hello, SECTION TWO", Width=50, Height=50 }
+                }
+            });
+
+            var xml = label.Serialize();
+            Console.WriteLine("____________________________________________________________________________");
+            Console.WriteLine(xml);
+            Console.WriteLine("____________________________________________________________________________");
+            Console.WriteLine(label.ToZPL(printerInfo));
+            Console.WriteLine("____________________________________________________________________________");
         }
     }
 }
