@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27428.2015
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28711.60
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrintZpl", "PrintZpl\PrintZpl.csproj", "{1B1733D1-FE8E-4856-923A-55DE4B73762F}"
 EndProject
@@ -11,6 +11,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		readme.md = readme.md
 	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleDoc", "SimpleDoc\SimpleDoc.csproj", "{E50B695A-0742-46AA-9350-015145702EF0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,6 +28,10 @@ Global
 		{2C0D74EE-E525-494E-9015-8F4F8A080E72}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2C0D74EE-E525-494E-9015-8F4F8A080E72}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2C0D74EE-E525-494E-9015-8F4F8A080E72}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E50B695A-0742-46AA-9350-015145702EF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E50B695A-0742-46AA-9350-015145702EF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E50B695A-0742-46AA-9350-015145702EF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E50B695A-0742-46AA-9350-015145702EF0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -124,5 +124,11 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SimpleDoc\SimpleDoc.csproj">
+      <Project>{e50b695a-0742-46aa-9350-015145702ef0}</Project>
+      <Name>SimpleDoc</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
