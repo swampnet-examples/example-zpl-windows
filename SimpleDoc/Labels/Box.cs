@@ -37,7 +37,7 @@ namespace SimpleDoc.Labels
         protected override string GetFieldContent(Label label, PrintInfo printInfo)
         {
             var width = printInfo.LabelWidthDots - printInfo.ToDotX(MarginRight) - printInfo.ToDotX(MarginLeft);
-            var height = printInfo.LabelHeightDots - printInfo.ToDotY(MarginTop) - printInfo.ToDotX(MarginBottom);
+            var height = printInfo.LabelHeightDots - printInfo.ToDotY(MarginTop) - printInfo.ToDotY(MarginBottom);
             var thickness = printInfo.PointToDot(Convert.ToDouble(Thickness.Replace("pt", "")));
             var zpl = new StringBuilder();
             var c = BorderColor == BorderColor.Black ? "B" : "W";

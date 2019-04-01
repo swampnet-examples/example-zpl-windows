@@ -63,7 +63,7 @@ namespace SimpleDoc.Labels
                 zpl.Append($"^CF{label.Font},{printInfo.ToDotY(label.FontSize)}");
             }
 
-            int width = (int)printInfo.LabelWidthDots - GetFieldX(label, printInfo);
+            int width = (int)printInfo.LabelWidthDots - printInfo.ToDotX(MarginLeft) - printInfo.ToDotX(MarginRight);
             int maxLines = Content.Count();
             int kerning = 0;
             string justify = GetJustification(HorizontalAlignment);
@@ -100,7 +100,10 @@ namespace SimpleDoc.Labels
                     break;
 
                 case VerticalAlignment.Center:
-                    y = ((((int)printInfo.LabelHeightDots - printInfo.ToDotY(MarginBottom)) / 2) + printInfo.ToDotY(MarginTop)) - (textBlockHeight/2);
+                    var marginTop = printInfo.ToDotY(MarginTop);
+                    var marginBottom = printInfo.ToDotY(MarginBottom);
+                    y = marginTop + (((int)printInfo.LabelHeightDots - marginBottom - marginTop) / 2);
+                    y -= (textBlockHeight / 2);
                     break;
 
                 // Default to .Top

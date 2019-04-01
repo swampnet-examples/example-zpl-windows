@@ -34,7 +34,7 @@ namespace PrintLinkOS
                 //SendZplOverTcp(ip, port, zpl);
 
 
-                var label = Label.Deserialize(File.ReadAllText("data\\template-02.xml"));
+                var label = Label.Deserialize(File.ReadAllText("data\\template-03.xml"));
 
                 SendZplOverTcp(ip, port, label.ToZPL(new PrintInfo()
                 {

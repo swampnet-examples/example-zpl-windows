@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<label xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" font-type="0" font-size="12pt">
+  <content>
+    <!-- Top Left  -->
+    <box margin-left="5%" margin-right="50%" margin-top="5%" margin-bottom="50%" border-thickness="1pt" border-color="Black" border-rounding="1" />
+    <p margin-left="5%" margin-right="50%" margin-top="5%" margin-bottom="50%" horizontal-alignment="center" vertical-alignment="center">
+      <text>Top Left</text>
+    </p>
+    <p margin-left="5%" margin-right="50%" margin-top="5%" margin-bottom="50%" horizontal-alignment="left" vertical-alignment="center">
+      <text>LC</text>
+    </p>
+    <p margin-left="5%" margin-right="50%" margin-top="5%" margin-bottom="50%" horizontal-alignment="right" vertical-alignment="center">
+      <text>RC</text>
+    </p>
+    <p margin-left="5%" margin-right="50%" margin-top="5%" margin-bottom="50%" horizontal-alignment="left" vertical-alignment="top">
+      <text>LT</text>
+    </p>
+    <p margin-left="5%" margin-right="50%" margin-top="5%" margin-bottom="50%" horizontal-alignment="right" vertical-alignment="top">
+      <text>RT</text>
+    </p>
+    <p margin-left="5%" margin-right="50%" margin-top="5%" margin-bottom="50%" horizontal-alignment="left" vertical-alignment="bottom">
+      <text>LB</text>
+    </p>
+    <p margin-left="5%" margin-right="50%" margin-top="5%" margin-bottom="50%" horizontal-alignment="right" vertical-alignment="bottom">
+      <text>RB</text>
+    </p>
+    <p margin-left="5%" margin-right="50%" margin-top="5%" margin-bottom="50%" horizontal-alignment="center" vertical-alignment="top">
+      <text>CT</text>
+    </p>
+    <p margin-left="5%" margin-right="50%" margin-top="5%" margin-bottom="50%" horizontal-alignment="center" vertical-alignment="bottom">
+      <text>CB</text>
+    </p>
+
+    <!-- Top Right -->
+    <box margin-left="50%" margin-right="5%" margin-top="5%" margin-bottom="50%" border-thickness="1pt" border-color="Black" border-rounding="1" />
+    <p margin-left="50%" margin-right="5%" margin-top="5%" margin-bottom="50%" horizontal-alignment="center" vertical-alignment="center">
+      <text>Top Right</text>
+    </p>
+    
+    <!-- Bottom Right -->
+    <box margin-left="50%" margin-right="5%" margin-top="50%" margin-bottom="5%" border-thickness="1pt" border-color="Black" border-rounding="1" />
+    <p margin-left="50%" margin-right="5%" margin-top="50%" margin-bottom="5%" horizontal-alignment="center" vertical-alignment="center">
+      <text>Bottom Right</text>
+    </p>
+    <p margin-left="50%" margin-right="5%" margin-top="50%" margin-bottom="5%" horizontal-alignment="left" vertical-alignment="top">
+      <text>LT</text>
+    </p>
+    <p margin-left="50%" margin-right="5%" margin-top="50%" margin-bottom="5%" horizontal-alignment="center" vertical-alignment="top">
+      <text>CT</text>
+    </p>
+    <p margin-left="50%" margin-right="5%" margin-top="50%" margin-bottom="5%" horizontal-alignment="right" vertical-alignment="top">
+      <text>RT</text>
+    </p>
+    <p margin-left="50%" margin-right="5%" margin-top="50%" margin-bottom="5%" horizontal-alignment="right" vertical-alignment="center">
+      <text>RC</text>
+    </p>
+    <p margin-left="50%" margin-right="5%" margin-top="50%" margin-bottom="5%" horizontal-alignment="right" vertical-alignment="bottom">
+      <text>RB</text>
+    </p>
+    <p margin-left="50%" margin-right="5%" margin-top="50%" margin-bottom="5%" horizontal-alignment="center" vertical-alignment="bottom">
+      <text>CB</text>
+    </p>
+    <p margin-left="50%" margin-right="5%" margin-top="50%" margin-bottom="5%" horizontal-alignment="left" vertical-alignment="bottom">
+      <text>LB</text>
+    </p>
+    <p margin-left="50%" margin-right="5%" margin-top="50%" margin-bottom="5%" horizontal-alignment="left" vertical-alignment="center">
+      <text>LC</text>
+    </p>
+
+    <!-- Bottom Left -->
+    <box margin-left="5%" margin-right="50%" margin-top="50%" margin-bottom="5%" border-thickness="1pt" border-color="Black" border-rounding="1" />
+    <p margin-left="5%" margin-right="50%" margin-top="50%" margin-bottom="5%" horizontal-alignment="center" vertical-alignment="center">
+      <text>Bottom Left</text>
+    </p>
+
+  </content>
+</label>
