@@ -14,6 +14,19 @@ namespace SimpleDoc.Labels
             Content = new List<FieldBase>();
         }
 
+        /// <summary>
+        /// Default font type
+        /// </summary>
+        [XmlAttribute("font-type")]
+        public string Font { get; set; }
+
+
+        /// <summary>
+        /// Default font size
+        /// </summary>
+        [XmlAttribute("font-size")]
+        public string FontSize { get; set; }
+
 
         [XmlArray("content")]
         [XmlArrayItem("p", typeof(Paragraph))]
@@ -46,9 +59,9 @@ namespace SimpleDoc.Labels
             var zpl = new StringBuilder();
             zpl.AppendLine("^XA");
 
-            foreach(var field in Content)
+            foreach (var field in Content)
             {
-                zpl.Append(field.Emit(printInfo));
+                zpl.Append(field.Emit(this, printInfo));
             }
 
             zpl.AppendLine("^XZ");

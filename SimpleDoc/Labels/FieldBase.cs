@@ -22,11 +22,11 @@ namespace SimpleDoc.Labels
         [XmlAttribute(AttributeName = "name")]
         public string Name { get; set; }
 
-        protected abstract int GetFieldX(PrintInfo printInfo);
-        protected abstract int GetFieldY(PrintInfo printInfo);
-        protected abstract string GetFieldContent(PrintInfo printInfo);
+        protected abstract int GetFieldX(Label label, PrintInfo printInfo);
+        protected abstract int GetFieldY(Label label, PrintInfo printInfo);
+        protected abstract string GetFieldContent(Label label, PrintInfo printInfo);
 
-        internal string Emit(PrintInfo printInfo)
+        internal string Emit(Label label, PrintInfo printInfo)
         {
             var zpl = new StringBuilder();
 
@@ -35,9 +35,9 @@ namespace SimpleDoc.Labels
                 zpl.AppendLine($"^FX {Name}");
             }
 
-            zpl.Append($"^FO{GetFieldX(printInfo)},{GetFieldY(printInfo)}");
+            zpl.Append($"^FO{GetFieldX(label, printInfo)},{GetFieldY(label, printInfo)}");
 
-            zpl.Append(GetFieldContent(printInfo));
+            zpl.Append(GetFieldContent(label, printInfo));
 
             zpl.Append($"^FS");
 

@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<label xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" font-type="0" font-size="12pt">
+  <content>
+    <p name="Top Left" horizontal-alignment="left" vertical-alignment="top" margin-left="10pt" margin-top="10pt" margin-bottom="10pt">
+      <text>Left</text>
+    </p>
+    <p name="Top Center" horizontal-alignment="center" vertical-alignment="top" margin-left="10pt" margin-top="10pt" margin-bottom="10pt">
+      <text>Center</text>
+      <text>Center Line 2</text>
+    </p>
+    <p name="Top Right" horizontal-alignment="right" vertical-alignment="top" margin-left="10pt" margin-top="10pt" margin-bottom="10pt">
+      <text>Right</text>
+    </p>
+    <p name="Center Left" horizontal-alignment="left" vertical-alignment="center" margin-left="10pt" margin-top="10pt" margin-bottom="10pt">
+      <text>Left</text>
+    </p>
+    <p name="Center Center" horizontal-alignment="center" vertical-alignment="center" margin-left="10pt" margin-top="10pt" margin-bottom="10pt" font="0" font-size="20pt">
+      <text>Center</text>
+      <text>Center Line 2</text>
+    </p>
+    <p name="Center Right" horizontal-alignment="right" vertical-alignment="center" margin-left="10pt" margin-top="10pt" margin-bottom="10pt">
+      <text>Right</text>
+    </p>
+    <p name="Bottom Left" horizontal-alignment="left" vertical-alignment="bottom" margin-left="10pt" margin-top="10pt" margin-bottom="10pt">
+      <text>Left</text>
+    </p>
+    <p name="Bottom Center" horizontal-alignment="center" vertical-alignment="bottom" margin-left="10pt" margin-top="10pt" margin-bottom="10pt">
+      <text>Center</text>
+      <text>Center Line 2</text>
+    </p>
+    <p name="Bottom Right" horizontal-alignment="right" vertical-alignment="bottom" margin-left="10pt" margin-top="10pt" margin-bottom="10pt">
+      <text>Right</text>
+    </p>
+  </content>
+</label>

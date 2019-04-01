@@ -41,7 +41,7 @@ namespace SimpleDoc.Labels
         public string MarginBottom { get; set; }
 
         [XmlAttribute("font-type")]
-        public int Font { get; set; }
+        public string Font { get; set; }
 
         [XmlAttribute("font-size")]
         public string FontSize { get; set; }
@@ -49,13 +49,21 @@ namespace SimpleDoc.Labels
         [XmlElement("text")]
         public List<Text> Content { get; set; }
 
-        protected override string GetFieldContent(PrintInfo printInfo)
+        protected override string GetFieldContent(Label label, PrintInfo printInfo)
         {
             var zpl = new StringBuilder();
 
-            zpl.Append($"^CF{Font},{printInfo.ToDotY(FontSize)}");
+            // Set font options
+            if (!string.IsNullOrEmpty(FontSize))
+            {
+                zpl.Append($"^CF{Font},{printInfo.ToDotY(FontSize)}");
+            }
+            else
+            {
+                zpl.Append($"^CF{label.Font},{printInfo.ToDotY(label.FontSize)}");
+            }
 
-            int width = (int)printInfo.LabelWidthDots - GetFieldX(printInfo);
+            int width = (int)printInfo.LabelWidthDots - GetFieldX(label, printInfo);
             int maxLines = Content.Count();
             int kerning = 0;
             string justify = GetJustification(HorizontalAlignment);
@@ -72,16 +80,16 @@ namespace SimpleDoc.Labels
         }
 
 
-        protected override int GetFieldX(PrintInfo printInfo)
+        protected override int GetFieldX(Label label, PrintInfo printInfo)
         {
             return printInfo.ToDotX(MarginLeft);
         }
 
 
-        protected override int GetFieldY(PrintInfo printInfo)
+        protected override int GetFieldY(Label label, PrintInfo printInfo)
         {
             int y;
-            var fontSize = printInfo.ToDotY(FontSize);
+            var fontSize = printInfo.ToDotY(string.IsNullOrEmpty(FontSize) ? label.FontSize : FontSize);
             var kerning = 0;
             var textBlockHeight = Content.Count() * (fontSize + kerning);
 
