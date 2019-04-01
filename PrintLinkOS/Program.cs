@@ -17,32 +17,32 @@ namespace PrintLinkOS
         {
             try
             {
-                string zpl = "";
-
-                zpl = TestSimpleDoc(new PrintInfo()
-                {
-                    Name = "Zebra",
-                    DPI = 203,
-                    LabelWidthInches = 4,
-                    LabelHeightInches = 3
-                });
-
-
                 string ip = "10.40.32.212";
                 int port = 9100;
-                SendZplOverTcp(ip, port, zpl);
 
                 //CheckPrinterStatus(ip, port);
 
-                //var label = Label.Deserialize(File.ReadAllText("data\\template-01.xml"));
+                //string zpl = "";
 
-                //SendZplOverTcp(ip, port, label.ToZPL(new PrintInfo()
+                //zpl = TestSimpleDoc(new PrintInfo()
                 //{
                 //    Name = "Zebra",
                 //    DPI = 203,
                 //    LabelWidthInches = 4,
                 //    LabelHeightInches = 3
-                //}));
+                //});
+                //SendZplOverTcp(ip, port, zpl);
+
+
+                var label = Label.Deserialize(File.ReadAllText("data\\template-02.xml"));
+
+                SendZplOverTcp(ip, port, label.ToZPL(new PrintInfo()
+                {
+                    Name = "Zebra",
+                    DPI = 203,
+                    LabelWidthInches = 4,
+                    LabelHeightInches = 3
+                }));
 
 
                 ////SendZplOverTcp(ip, port, GenerateZpl("test"));
@@ -227,59 +227,6 @@ namespace PrintLinkOS
             }
         }
 
-        // https://www.zebra.com/content/dam/zebra/manuals/printers/common/programming/zpl-zbi2-pm-en.pdf
-        private static string zpl_tutorial()
-        {
-            return @"
-^XA
-^FO50,50    ^A0N,100,100    ^FD_ABCDEFGHI_  ^FS
-^FO50,200   ^A0N,100,100    ^FD_ABCDEFGHI_  ^FS
-
-^FO50,350   ^GB200,100,2                    ^FS
-^FO300,350  ^GB300,200,10                   ^FS
-
-^XZ
-";
-        }
-
-        private static string GenerateZpl(string text)
-        {
-            return
-                @"
-				^XA
-				^FX test lines, various point sizes
-				^CFA,15
-				^FO50,10^FD" + text + @"^FS
-				^CFA,30
-				^FO50,30^FD" + text + @"^FS
-				^CFA,60
-				^FO50,60^FD" + text + @"^FS
-
-				^FX line
-				^FO50,130^GB1000,1,3^FS
-
-				^FX barcode
-				^BY5,2,100
-				^FO100,150^BC^FD" + text + @"^FS
-
-^FX QR code
-^FO100,250
-^BY4,2.0,65
-^BQN,2,5
-^FD093"+text + @"
-^FS
-				^XZ
-			".Trim();
-//            return
-//                @"
-//^XA
-//^CFA,15
-//^FO50,50
-//^FD" + text + @"
-//^FS
-//^XZ
-//".Trim();
-        }
 
         private static string TestSimpleDoc(PrintInfo printerInfo)
         {
@@ -291,11 +238,33 @@ namespace PrintLinkOS
 
             label.Content.Add(new Barcode("Some test barcode")
             {
-                X = "10%",
-                Y = "10%",
-                Size = "4",
+                X = "60%",
+                Y = "30%",
+                Size = "10",
                 Type = BarcodeType.QR,
-                Content = "XX123456789XXXX123456789XXXX123456789XXXX123456789XXXX123456789XXXX123456789XXXX123456789XXXX123456789XXXX123456789XXXX123456789XX"
+                Content = "ABC-123456789"
+            });
+
+            label.Content.Add(new Box() {
+                MarginTop = "10pt",
+                MarginBottom = "10pt",
+                MarginLeft = "10pt",
+                MarginRight = "51%",
+                BorderColor = BorderColor.Black,
+                Thickness = "1pt",
+                BorderRounding = 0
+            });
+
+            label.Content.Add(new Paragraph()
+            {
+                MarginTop = "20pt",
+                MarginBottom = "20pt",
+                MarginLeft = "20pt",
+                MarginRight = "50%",
+                Content = new List<Text>()
+                {
+                    new Text() { Content ="ABC-123456789" }
+                }
             });
 
             var xml = label.Serialize();
