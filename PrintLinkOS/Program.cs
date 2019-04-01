@@ -15,11 +15,14 @@ namespace PrintLinkOS
         {
             try
             {
-                // Not on my emulator?
-                //CheckPrinterStatus("127.0.0.1", 9100);
-                //PrintImage("127.0.0.1", 9100);
+                string ip = "10.40.32.212";
+                int port = 9100;
 
-                SendZplOverTcp("127.0.0.1", 9100, GenerateZpl("test"));
+                CheckPrinterStatus(ip, port);
+
+                //SendZplOverTcp(ip, port, GenerateZpl("test"));
+                SendZplOverTcp(ip, port, zpl_tutorial());
+                //PrintImage(ip, port);
             }
             catch (Exception ex)
             {
@@ -43,7 +46,7 @@ namespace PrintLinkOS
                 connection.Open();
 
                 // Send the data to printer as a byte array.
-                connection.Write(Encoding.UTF8.GetBytes(zpl));
+                connection.Write(Encoding.UTF8.GetBytes(zpl.Trim()));
             }
             catch (ConnectionException e)
             {
@@ -87,6 +90,21 @@ namespace PrintLinkOS
                 {
                     Console.WriteLine("Cannot Print.");
                 }
+
+                Console.WriteLine();
+                Console.WriteLine($"isHeadCold: {printerStatus.isHeadCold}");
+                Console.WriteLine($"isHeadOpen: {printerStatus.isHeadOpen}");
+                Console.WriteLine($"isHeadTooHot: {printerStatus.isHeadTooHot}");
+                Console.WriteLine($"isPaperOut: {printerStatus.isPaperOut}");
+                Console.WriteLine($"isPartialFormatInProgress: {printerStatus.isPartialFormatInProgress}");
+                Console.WriteLine($"isPaused: {printerStatus.isPaused}");
+                Console.WriteLine($"isReadyToPrint: {printerStatus.isReadyToPrint}");
+                Console.WriteLine($"isReceiveBufferFull: {printerStatus.isReceiveBufferFull}");
+                Console.WriteLine($"isRibbonOut: {printerStatus.isRibbonOut}");
+                Console.WriteLine($"labelLengthInDots: {printerStatus.labelLengthInDots}");
+                Console.WriteLine($"labelsRemainingInBatch: {printerStatus.labelsRemainingInBatch}");
+                Console.WriteLine($"numberOfFormatsInReceiveBuffer: {printerStatus.numberOfFormatsInReceiveBuffer}");
+                Console.WriteLine($"printMode: {printerStatus.printMode}");
             }
             catch (ConnectionException e)
             {
@@ -133,13 +151,26 @@ namespace PrintLinkOS
             }
         }
 
+        // https://www.zebra.com/content/dam/zebra/manuals/printers/common/programming/zpl-zbi2-pm-en.pdf
+        private static string zpl_tutorial()
+        {
+            return @"
+^XA
+^FO50,50    ^A0N,100,100    ^FD_ABCDEFGHI_  ^FS
+^FO50,200   ^A0N,100,100    ^FD_ABCDEFGHI_  ^FS
+
+^FO50,350   ^GB200,100,2                    ^FS
+^FO300,350  ^GB300,200,10                   ^FS
+
+^XZ
+";
+        }
 
         private static string GenerateZpl(string text)
         {
-            return 
+            return
                 @"
 				^XA
-
 				^FX test lines, various point sizes
 				^CFA,15
 				^FO50,10^FD" + text + @"^FS
@@ -152,14 +183,26 @@ namespace PrintLinkOS
 				^FO50,130^GB1000,1,3^FS
 
 				^FX barcode
-				^BY5,2,300
+				^BY5,2,100
 				^FO100,150^BC^FD" + text + @"^FS
 
-				^QR code
-                ^FO100,500^BY4,2.0,65^BQN,2,10^FD093" + text + @"^FS
-
+^FX QR code
+^FO100,250
+^BY4,2.0,65
+^BQN,2,5
+^FD093"+text + @"
+^FS
 				^XZ
-			";
+			".Trim();
+//            return
+//                @"
+//^XA
+//^CFA,15
+//^FO50,50
+//^FD" + text + @"
+//^FS
+//^XZ
+//".Trim();
         }
     }
 }
